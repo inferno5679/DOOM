@@ -85,7 +85,6 @@ class AnimatedSprite(SpriteObject):
     def get_images(self, path):
         images = deque()
         file_names = sorted(os.listdir(path), key=self.numerical_sort)
-        print(file_names)
         for file_name in file_names:
             # print(file_name)
             if os.path.isfile(os.path.join(path, file_name)) and file_name != ".DS_Store":

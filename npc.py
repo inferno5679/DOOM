@@ -44,6 +44,8 @@ class NPC(AnimatedSprite):
     def attack(self):
         if self.animation_trigger:
             self.game.sound.npc_shot.play()
+            if random() < self.accuracy:
+                self.game.player.get_damage(self.attack_damage)
 
     def check_wall_collision(self, dx, dy):
         if self.check_wall(int(self.x + dx * self.size), int(self.y)):

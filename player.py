@@ -10,12 +10,28 @@ class Player:
         self.shot = False
         self.diag_move_corr = 1 / math.sqrt(2)
         self.health = player_max_health
+        self.rel = 0
+
+
+    def calculate_rel(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5  
+    def check_game_over(self):
+        if self.health < 1:
+            if self.game.sound.player_death is None:
+                print("Debug: player_death sound is not initialized")
+                return
+            self.game.sound.player_death.play()
+            self.game.object_renderer.game_over()
+            pg.display.flip
+            pg.time.delay(1500)
+            self.game.new_game()
     
     def get_damage(self,damage):
         self.health -= damage
         self.game.object_renderer.player_damage()
         self.game.sound.player_pain.play()
-    
+        self.check_game_over()
+
     def single_fire_event(self,event):
         if event.type == pg.MOUSEBUTTONDOWN:
             if event.button == 1 and not self.shot and not self.game.weapon.reloading:

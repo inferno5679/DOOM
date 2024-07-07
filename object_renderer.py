@@ -9,10 +9,24 @@ class ObjectRenderer:
         self.wall_textures = self.load_wall_textures()
         self.sky_image = self.get_texture('game_dev/resources/textures/sky.png',(width,half_height))
         self.sky_offset = 0
-    
+        self.blood_screen = self.get_texture("game_dev/resources/textures/blood_screen.png",Res)
+        self.digit_size = 90
+        self.digit_images = [self.get_texture(f'game_dev/resources/textures/digits/{i}.png',[self.digit_size]*2)
+                             for i in range(11)]
+        self.digits = dict(zip(map(str,range(11)),self.digit_images))
     def draw(self):
         self.draw_background()
         self.render_game_objects()
+        self.draw_player_health()
+
+    def draw_player_health(self):
+        health = str(self.game.player.health)
+        for i,char in enumerate(health):
+            self.screen.blit(self.digits[char],(i*self.digit_size,0))
+        self.screen.blit(self.digits['10'],((i+1) * self.digit_size,0))
+
+    def player_damage(self):
+        self.screen.blit(self.blood_screen,(0,0))
     
     def draw_background(self):
         self.sky_offset = (self.sky_offset + 4.0 * self.game.player.rel) % width

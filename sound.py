@@ -11,3 +11,4 @@ class Sound():
         self.npc_shot = pg.mixer.Sound(self.path + "dspistol.wav")
         self.player_pain = pg.mixer.Sound(self.path + "player_pain.wav")
         self.theme = pg.mixer.music.load(self.path + 'theme.mp3')
+        self.player_death = pg.mixer.Sound(self.path + "dspldeth.wav")

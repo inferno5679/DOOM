@@ -11,6 +11,7 @@ player_pos = 1.5,5 # mini_map
 player_angle = 0
 player_speed = 0.004
 player_rotation_speed = 0.002
+player_max_health = 100
 
 mouse_sensitivity = 0.0003
 mouse_max_rel=40

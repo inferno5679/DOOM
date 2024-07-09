@@ -3,6 +3,7 @@ bin
 include
 resources
 lib
+imageprocess.py
 pyvenv.cfg
 .DS_Store
 __pycache__/
